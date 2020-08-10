@@ -19,7 +19,8 @@ public class StringTypeAdapter extends TypeAdapter<String> {
     public void write(JsonWriter out, String value) throws IOException {
         try {
             if (value == null){
-                value = "";
+                out.nullValue();
+                return;
             }
             out.value(value);
         } catch (Exception e) {
@@ -38,6 +39,6 @@ public class StringTypeAdapter extends TypeAdapter<String> {
         } catch (Exception e) {
             Log.e("TypeAdapter", "Not a String", e);
         }
-        return "";
+        return in.nextString();
     }
 }
